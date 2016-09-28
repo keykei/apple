@@ -1,0 +1,185 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+</head>
+<body bgcolor="#FFFFFF">
+
+<h1>4J-17　越野あかね (第20回)</h1>
+
+<center>
+<applet code="MyFrame.class" archive="p110413.jar" width="700" height="700"></applet>
+</center>
+
+<ul>
+<li>ユーザー向け解説:<br>
+りんごが木から落ちて転がるアニメーションです.
+</li>
+<br>
+
+<li>開発者向け解説:<br>
+(長いので折りたたみ)
+<br>
+<div onclick="obj=document.getElementById('op1').style; obj.display=(obj.display=='none')?'block':'none';">
+<a style="cursor:pointer;">▼ MyFrame.java</a>
+</div>
+
+<div id="op1" style="display:none;clear:both;"><br>
+フィールド:<br>
+MyPanel型変数panel, Apple型変数apple, double型変数time, 
+<br>
+Timer型変数timer1, boolean型変数flag(初期値はfalse),
+<br>
+double型変数fall(初期値は0), int型変数i(初期値は0)を定義.
+<br>
+<br>
+init:<br>
+appleにapple型インスタンスを代入.<br>
+appleに対してv0,θの値をセッターで設定.<br>
+timeの値を0.0に設定.<br>
+timer1にTimer型インスタンスを代入,timer1 起動.<br>
+Image型の配列変数imgsを定義し，格納要素数9のImage型配列インスタンスを代入.<br>
+URL型の配列変数urlを定義し，格納要素数9のURL型配列インスタンスを代入.<br>
+for文を用いてurlのi番目に"apple(i+1).png"の画像を格納.<br>
+imgsのi番目にurlのi番目内の画像を格納.
+(i = 0, 1, 2, ..., 6)<br>
+urlの8番目に"tree.png"の画像を格納.
+<br>
+imgsの8番目にurlの8番目内の画像を格納.
+<br>
+
+panelに引数をimgsとしたMyPanel型インスタンスを代入.
+<br>
+COntentPaneにpanelを追加.
+<br>
+
+actionPerformed:
+<br>
+引数としてActionEvent型eを受け取る.
+<br>
+appleに対してセッターを呼び出しtimeを設定.
+<br>
+double型変数appleX, appleYを定義し，それぞれにappleのX座標，
+<br>
+Y座標の値を代入.
+<br>
+fallの値が500より大きい場合に
+<br>
+かつflagの値がtrueであるならば，timeの値を0.0にし，
+<br>
+flagの値をtrueとし，appleにtimeを設定.
+<br>
+appleXにappleのX座標の値を代入.
+<br>
+それ以外で，panelに対してappleXの値を設定. 
+<br>
+panelに対してiの値を設定.
+<br>
+iの値を1ずつインクリメント.
+<br>
+iの値が8に達した場合，iの値を0に戻す.
+<br>
+appleXの値がが165のより大きくなった場合timer1を停止.
+<br>
+
+<br>
+また他の場合(fallの値が500以下である場合)には
+<br>
+timeの値を0.2ずつインクリメントする.
+<br>
+fallにappleYの座標の値を代入する.
+<br>
+panelに対してappleYの値を設定.
+<br>
+
+<br>
+上記の全ての場合に当たらなかった場合，再描画を要求.
+</div>
+
+<div onclick="obj=document.getElementById('op2').style; obj.display=(obj.display=='none')?'block':'none';">
+<a style="cursor:pointer;">▼ MyaPanel.java</a>
+</div>
+
+<div id="op2" style="display:none;clear:both;"><br>
+フィールド:<br>
+doubel型変数appleX, appleY, Image型の配列変数imgsを定義し，imgsには格納要素数9の
+Image型配列インスタンスを代入.
+<br>
+<br>
+コンストラクタ:<br>
+引数としてImage型配列imgsを受け取る.
+<br>
+描画パネルの大きさ，バックグラウンドカラーの設定.
+<br>
+for文を用いてメンバ変数imgsのi番目に引数として受け取ったimgsの
+<br>
+i番目の値を代入.
+<br>
+<br>
+setAppleX:<br>
+ appleXのセッター<br>
+<br>
+setAppleY:<br>
+appleYのセッター<br>
+<br>
+setI:<br>
+iのセッター<br>
+<br>
+paintComponent:<br>
+Graphics型のgを引数として受け取る.<br>
+gに対して座標(0, 0)にimgsの8番目に格納されている画像を描画.<br>
+gに対して座標(appleX+200, appleY+100)にimgsのi番目に格納されている画像を描画.<br>
+</div>
+
+<div onclick="obj=document.getElementById('op3').style; obj.display=(obj.display=='none')?'block':'none';">
+<a style="cursor:pointer;">▼ Apple.java</a>
+</div>
+
+<div id="op3" style="display:none;clear:both;"><br>
+setV0:<br>
+v0のセッター<br>
+<br>
+setTheta:<br>
+thetaのセッター<br>
+<br>
+
+setTime:<br>
+timeのセッター<br>
+<br>
+
+getX:<br>
+v0*timeの値を返す.<br>
+<br>
+
+getY<br>
+0.5*9.8*time*timeの値を返す.<br>
+</div>
+
+
+
+
+</li><br>
+
+<br>
+<li>ソースファイル:<br>
+<a href="MyFrame.java"><code>MyFrame.java</code></a><br>
+<a href="MyPanel.java"><code>MyPanel.java</code></a><br>
+<a href="Apple.java"><code>Apple.java</code></a><br>
+<br>
+
+(以下のリンクはファイルが存在しないことを証明するための意図的リンク切れです.) 
+<li>クラスファイル:<br>
+ <a href="MyFrame.class"><code>MyFrame.class</code></a></li>
+<li>画像ファイル:<br>
+<a href="apple1.png"><code>apple1.png</code></a><br>
+<a href="apple2.png"><code>apple2.png</code></a><br>
+<a href="apple3.png"><code>apple3.png</code></a><br>
+<a href="apple4.png"><code>apple4.png</code></a><br>
+<a href="apple5.png"><code>apple5.png</code></a><br>
+<a href="apple6.png"><code>apple6.png</code></a><br>
+<a href="apple7.png"><code>apple7.png</code></a><br>
+<a href="apple8.png"><code>apple8.png</code></a><br>
+<a href="tree.png"><code>tree.png</code></a></li>
+</ul>
+</body></html>
+
